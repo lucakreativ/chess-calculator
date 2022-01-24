@@ -5,7 +5,7 @@ import matplotlib.pyplot as mp
 graph={}
 fac=20
 
-data=pandas.read_csv("data.csv")
+data=pandas.read_csv("raw.csv")
 data.sort_values(
     ascending=False,
     axis=0,
@@ -18,7 +18,8 @@ diff=50
 data=data[(data.dif<diff)]
 data=data[(data.dif>-diff)]
 
-data=data[(data.w_elo>1750)]
+data=data[(data.w_elo>1800)]
+data=data[(data.w_elo<2800)]
 data=data.reindex()
 
 for idx, row in data.iterrows():
@@ -53,7 +54,7 @@ while i>0+fac:
         o+=graph[elo]["o"]
         acc+=graph[elo]["acc"]
     graphs[elo]={"r":r, "o":o, "acc":acc}
-    i-=fac
+    i-=1
     #print(i)
 
 
@@ -65,8 +66,11 @@ gr["elo"]=gr.index
 
 
 gr["r_a"]=gr["r"]/(gr["r"]+gr["o"])
-gr["r_c"]=(4.09*10**-7)*gr["elo"]**2-0.001375*gr["elo"]+1.3
+gr["r_c1"]=(4.09*10**-7)*gr["elo"]**2-0.001375*gr["elo"]+1.3
+gr["r_c2"]=(5.241*10**-7)*gr["elo"]**2-0.0019*gr["elo"]+1.872
+gr["r_c3"]=(4.873*10**-7)*gr["elo"]**2-0.00173*gr["elo"]+1.6888
+gr["r_c4"]=(5.80944*10**-7)*gr["elo"]**2-0.002214*gr["elo"]+2.3048
 
 #print(gr)
-gr.plot(x="elo", y=["r_a", "r_c"], kind="line")
+gr.plot(x="elo", y=["r_a", "r_c1","r_c2", "r_c3", "r_c4"], kind="line")
 mp.show()
