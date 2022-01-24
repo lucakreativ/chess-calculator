@@ -13,7 +13,7 @@ data.sort_values(
     inplace=True
 )
 
-diff=50
+diff=20
 
 data=data[(data.dif<diff)]
 data=data[(data.dif>-diff)]
