@@ -1,3 +1,5 @@
+#Berechnet die Graphen für ELOs
+
 # importing mplot3d toolkits, numpy and matplotlib
 from mpl_toolkits import mplot3d
 import numpy as np
