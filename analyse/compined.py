@@ -1,3 +1,4 @@
+#gesammte berechnung
 e_w=2700
 e_b=2600
 
